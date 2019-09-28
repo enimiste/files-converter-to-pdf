@@ -1,0 +1,6 @@
+/target/
+.project
+/.settings/
+/out/
+/in/
+/tmp/
