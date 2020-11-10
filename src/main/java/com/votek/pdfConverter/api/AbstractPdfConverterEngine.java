@@ -62,9 +62,7 @@ public abstract class AbstractPdfConverterEngine implements PdfConverterEngine {
 				if (res.getOutputFile().exists())
 					res.getOutputFile().delete();
 				results.add(FileResponse.from(outFile, res.getPagesNumber()));
-			} catch (IOException e) {
-				throw new FileConverterException(res.getOutputFile(), e);
-			} catch (InvalidFileResponseException e) {
+			} catch (IOException | InvalidFileResponseException e) {
 				throw new FileConverterException(res.getOutputFile(), e);
 			}
 		}

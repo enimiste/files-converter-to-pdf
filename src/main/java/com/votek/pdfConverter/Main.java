@@ -32,7 +32,7 @@ public class Main {
 
 		int n = args.length;
 
-		double scale = Double.valueOf(args[n - 2]);
+		double scale = Double.parseDouble(args[n - 2]);
 		Format format = Format.valueOf(args[n - 1]);
 
 		run(String.join(" ", Arrays.copyOfRange(args, 0, n - 2)), scale, format);

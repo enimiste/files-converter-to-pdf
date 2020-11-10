@@ -21,7 +21,7 @@ public interface FileData {
 	/**
 	 * Create a copy of this instance and override the inputFile with the new value
 	 * 
-	 * @param file
+	 * @param newInputfile
 	 * @return
 	 */
 	FileData copy(File newInputfile);
@@ -50,7 +50,7 @@ public interface FileData {
 		return new FileDataImpl(inputFile, scale, format, new PriorityQueue<>(transformations));
 	}
 
-	public static enum Format {
+	enum Format {
 		A0("A0"), A1("A1"), A2("A2"), A3("A3"), A4("A4"), A5("A5"), A6("A6");
 
 		private final String format;

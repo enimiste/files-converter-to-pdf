@@ -34,12 +34,12 @@ public interface PdfTransformer {
 	 * @author HP
 	 *
 	 */
-	public static interface PdfTransformation extends Comparable<PdfTransformation> {
+	interface PdfTransformation extends Comparable<PdfTransformation> {
 		FileResponse apply(FileResponse file, Configuration conf) throws FilePdfTransformationException;
 
 		int getPriority();
 
-		public default int compareTo(PdfTransformation o) {
+		default int compareTo(PdfTransformation o) {
 			return o == null ? -1 : (this.getPriority() - o.getPriority());
 		}
 	}

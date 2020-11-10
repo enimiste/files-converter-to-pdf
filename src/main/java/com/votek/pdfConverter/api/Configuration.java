@@ -25,7 +25,7 @@ public interface Configuration {
 	 */
 	static Configuration from(File tempDir, File outDir, List<FileProcessor> processors)
 			throws FileConfigurationException {
-		return new ConfigurationImpl(tempDir, outDir, new PriorityQueue<FileProcessor>(processors));
+		return new ConfigurationImpl(tempDir, outDir, new PriorityQueue<>(processors));
 	}
 	
 	/**
@@ -36,6 +36,6 @@ public interface Configuration {
 	 */
 	static Configuration from(File tempDir, File outDir)
 			throws FileConfigurationException {
-		return from(tempDir, outDir, new ArrayList<FileProcessor>());
+		return from(tempDir, outDir, new ArrayList<>());
 	}
 }

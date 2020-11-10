@@ -13,7 +13,7 @@ public interface FileProcessor extends Comparable<FileProcessor> {
 
 	int getPriority();
 
-	public default int compareTo(FileProcessor o) {
+	default int compareTo(FileProcessor o) {
 		return o == null ? -1 : (this.getPriority() - o.getPriority());
 	}
 }

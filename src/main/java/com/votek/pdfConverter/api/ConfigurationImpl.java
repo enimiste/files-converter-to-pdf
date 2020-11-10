@@ -17,9 +17,9 @@ class ConfigurationImpl implements Configuration {
 		this.outDir = outDir;
 		this.processors = processors;
 		if (!tempDir.exists())
-			throw new FileConfigurationException("tempDir does'nt exists");
+			throw new FileConfigurationException("tempDir doesn't exists");
 		if (!outDir.exists())
-			throw new FileConfigurationException("outDir does'nt exists");
+			throw new FileConfigurationException("outDir doesn't exists");
 	}
 
 	@Override

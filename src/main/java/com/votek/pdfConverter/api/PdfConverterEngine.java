@@ -36,7 +36,7 @@ public interface PdfConverterEngine {
 		return PdfTransformer.getDefault();
 	}
 
-	public static PdfConverterEngine engine() {
+	static PdfConverterEngine engine() {
 		return new PdfConverterEngineImpl();
 	}
 }

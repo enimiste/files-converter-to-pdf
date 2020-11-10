@@ -10,7 +10,7 @@ public class FileHelper {
 	 * given extension or not
 	 * 
 	 * @param file
-	 * @param ext
+	 * @param exts
 	 * @return
 	 */
 	public static boolean hasExtension(File file, String... exts) {
@@ -37,7 +37,7 @@ public class FileHelper {
 	 * given extension or not
 	 * 
 	 * @param file
-	 * @param ext
+	 * @param exts
 	 * @return
 	 */
 	public static boolean hasExtension(FileData file, String... exts) {

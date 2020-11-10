@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,14 +39,7 @@ public class FileFolderGroupConverter extends FileGroupConverter {
 		if (!isFileExists(file.getInputFile()))
 			throw new FileNotFoundException(file.getInputFile());
 
-		return Arrays.stream(file.getInputFile().listFiles(new FilenameFilter() {
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.compareTo(".") != 0 && name.compareTo("..") != 0;
-			}
-		})).map(f -> {
-			return file.copy(f);
-		}).collect(Collectors.toList());
+		return Arrays.stream(Objects.requireNonNull(file.getInputFile().listFiles((dir, name) -> name.compareTo(".") != 0 && name.compareTo("..") != 0))).map(f -> file.copy(f)).collect(Collectors.toList());
 	}
 
 	protected boolean isFileExists(File file) {
