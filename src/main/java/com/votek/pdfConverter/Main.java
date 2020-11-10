@@ -1,16 +1,17 @@
 package com.votek.pdfConverter;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileData;
+import com.votek.pdfConverter.api.FileData.Format;
 import com.votek.pdfConverter.api.FileResponse;
 import com.votek.pdfConverter.api.PdfConverterEngine;
-import com.votek.pdfConverter.api.FileData.Format;
-import com.votek.pdfConverter.impl.transformation.*;
+import com.votek.pdfConverter.impl.transformation.PdfCopyTransformation;
+import com.votek.pdfConverter.impl.transformation.PdfPageCountTransformation;
+import com.votek.pdfConverter.impl.transformation.PdfScaleTransformation;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * For testing purposes
