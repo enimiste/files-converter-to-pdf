@@ -56,5 +56,10 @@ static void run(String path, double scale, Format format) {
 
 ```
 
+## roadmap
+- Implements the DOCXFileConverter
+- Implements the PPTXFileConverter
+- Implements the XLSXFileConverter
+
 ## Motivation :
 Inspired from a job post on Upwork
