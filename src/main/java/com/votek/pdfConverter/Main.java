@@ -46,8 +46,6 @@ public class Main {
 			// Ex : engine.addFileConverter(converter);
 			Configuration conf = Configuration.from(new File("./tmp"), new File("./out"));
 			// Ex : conf.addFileProcessor(processor);
-			scale = 100;
-			format = Format.A4;
 			FileData fileData = FileData.from(new File(path), scale, format,
 					Arrays.asList(new PdfCopyTransformation(conf.getTempDir(), 10),
 							// new PdfSkipPagesTransformation(1, 20),
