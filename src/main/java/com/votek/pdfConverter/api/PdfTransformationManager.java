@@ -4,13 +4,12 @@ import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
 import java.util.LinkedHashSet;
 
-public interface PdfTransformer {
+public interface PdfTransformationManager {
 	/**
-	 *
 	 * @return
 	 */
-	static PdfTransformer getDefault() {
-		return new PdfTransformer() {
+	static PdfTransformationManager newInstance() {
+		return new PdfTransformationManager() {
 		};
 	}
 

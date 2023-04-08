@@ -3,7 +3,7 @@ package com.votek.pdfConverter.impl.transformation;
 import com.itextpdf.text.pdf.PdfReader;
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileResponse;
-import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
+import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
 public class PdfPageCountTransformation implements PdfTransformation {

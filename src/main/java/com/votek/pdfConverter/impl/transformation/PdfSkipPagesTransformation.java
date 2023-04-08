@@ -7,7 +7,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileResponse;
-import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
+import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
 import java.io.File;

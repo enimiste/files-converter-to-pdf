@@ -23,11 +23,20 @@ public interface PdfConverterEngine {
 		return new PdfConverterEngineImpl();
 	}
 
-	default PdfTransformer getTransformer() {
-		return PdfTransformer.getDefault();
+	default PdfTransformationManager getTransformer() {
+		return PdfTransformationManager.newInstance();
 	}
 
 	/**
+	 * Order of execution :
+	 * <ol>
+	 * <li>Processors</li>
+	 * <li>Converters</li>
+	 * <li>Transformations</li>
+	 * </ol>
+	 * <p>
+	 * The returned files are saved in the {@link Configuration#getOutDir getOutDir} folder
+	 *
 	 * @param file input resource information
 	 * @param conf global configuration
 	 * @return returns a list of all converted resources (grouped resources like zip files will be flatted)

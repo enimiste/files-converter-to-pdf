@@ -1,6 +1,6 @@
 package com.votek.pdfConverter.api;
 
-import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
+import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
 
 import java.io.File;
 import java.util.LinkedHashSet;

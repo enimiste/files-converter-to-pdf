@@ -11,7 +11,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileData.Format;
 import com.votek.pdfConverter.api.FileResponse;
-import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
+import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
 import java.io.File;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Scaling up or down is related to changing paper format So it needs to be
  * handled in one class
- * 
+ *
  * @author HP
  *
  */
@@ -32,6 +32,10 @@ public class PdfScaleTransformation implements PdfTransformation {
 	protected double scale;
 	protected static Map<Format, Rectangle> pageSizes = new HashMap<>();
 
+	/**
+	 * @param scale  a floating number between 0 and 1 inclusive
+	 * @param format
+	 */
 	public PdfScaleTransformation(double scale, Format format) {
 		super();
 		this.scale = Math.max(1, Math.abs(scale));
