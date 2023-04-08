@@ -1,16 +1,16 @@
 package com.votek.pdfConverter.api;
 
-import java.io.File;
-import java.util.PriorityQueue;
-
 import com.votek.pdfConverter.api.exception.FileConfigurationException;
+
+import java.io.File;
+import java.util.LinkedHashSet;
 
 class ConfigurationImpl implements Configuration {
 	protected File tempDir;
 	protected File outDir;
-	protected PriorityQueue<FileProcessor> processors;
+	protected LinkedHashSet<FileProcessor> processors;
 
-	public ConfigurationImpl(File tempDir, File outDir, PriorityQueue<FileProcessor> processors)
+	public ConfigurationImpl(File tempDir, File outDir, LinkedHashSet<FileProcessor> processors)
 			throws FileConfigurationException {
 		super();
 		this.tempDir = tempDir;
@@ -33,7 +33,7 @@ class ConfigurationImpl implements Configuration {
 	}
 
 	@Override
-	public PriorityQueue<FileProcessor> getProcessor() {
+	public LinkedHashSet<FileProcessor> getProcessor() {
 		return processors;
 	}
 

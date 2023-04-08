@@ -1,9 +1,5 @@
 package com.votek.pdfConverter.impl.transformation;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfCopy;
 import com.itextpdf.text.pdf.PdfImportedPage;
@@ -14,19 +10,16 @@ import com.votek.pdfConverter.api.FileResponse;
 import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 public class PdfSkipPagesTransformation implements PdfTransformation {
 	protected int pagesCount;
-	protected int priority;
 
-	public PdfSkipPagesTransformation(int pagesCount, int priority) {
+	public PdfSkipPagesTransformation(int pagesCount) {
 		super();
 		this.pagesCount = pagesCount <= 0 ? 1 : pagesCount;
-		this.priority = priority;
-	}
-
-	@Override
-	public int getPriority() {
-		return priority;
 	}
 
 	@Override

@@ -1,29 +1,24 @@
 package com.votek.pdfConverter.api;
 
-import java.io.File;
-import java.util.PriorityQueue;
-
 import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
+
+import java.io.File;
+import java.util.LinkedHashSet;
 
 class FileDataImpl implements FileData {
 
 	protected File inputFile;
 	protected double outputScale;
 	protected Format outputFormat;
-	protected PriorityQueue<PdfTransformation> transformations;
+	protected LinkedHashSet<PdfTransformation> transformations;
 
-	public FileDataImpl(File inputFile, double outputScale, Format outputFormat) {
+	protected FileDataImpl(File inputFile, double outputScale, Format outputFormat,
+						   LinkedHashSet<PdfTransformation> transformations) {
 		super();
 		this.inputFile = inputFile;
 		this.outputScale = outputScale;
 		this.outputFormat = outputFormat;
-		this.transformations = new PriorityQueue<>();
-	}
-
-	public FileDataImpl(File inputFile, double outputScale, Format outputFormat,
-			PriorityQueue<PdfTransformation> transformations) {
-		this(inputFile, outputScale, outputFormat);
-		this.transformations = transformations;
+		this.transformations = transformations == null ? new LinkedHashSet<>() : transformations;
 	}
 
 	@Override
@@ -42,12 +37,12 @@ class FileDataImpl implements FileData {
 	}
 
 	@Override
-	public FileData copy(File newInputfile) {
-		return new FileDataImpl(newInputfile, outputScale, outputFormat);
+	public FileData copyWith(File newInputfile) {
+		return new FileDataImpl(newInputfile, outputScale, outputFormat, new LinkedHashSet<>());
 	}
 
 	@Override
-	public PriorityQueue<PdfTransformation> getTransformations() {
+	public LinkedHashSet<PdfTransformation> getTransformations() {
 		return transformations;
 	}
 

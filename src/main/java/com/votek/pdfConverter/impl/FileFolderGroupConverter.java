@@ -1,19 +1,18 @@
 package com.votek.pdfConverter.impl;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileData;
 import com.votek.pdfConverter.api.FileGroupConverter;
 import com.votek.pdfConverter.api.FileToPdfConverter;
 import com.votek.pdfConverter.api.exception.FileNotFoundException;
 import com.votek.pdfConverter.api.exception.FileUnGroupException;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * It handles paths to folders, so all the files inside the folder will be
@@ -39,7 +38,7 @@ public class FileFolderGroupConverter extends FileGroupConverter {
 		if (!isFileExists(file.getInputFile()))
 			throw new FileNotFoundException(file.getInputFile());
 
-		return Arrays.stream(Objects.requireNonNull(file.getInputFile().listFiles((dir, name) -> name.compareTo(".") != 0 && name.compareTo("..") != 0))).map(f -> file.copy(f)).collect(Collectors.toList());
+		return Arrays.stream(Objects.requireNonNull(file.getInputFile().listFiles((dir, name) -> name.compareTo(".") != 0 && name.compareTo("..") != 0))).map(file::copyWith).collect(Collectors.toList());
 	}
 
 	protected boolean isFileExists(File file) {

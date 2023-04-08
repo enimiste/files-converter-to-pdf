@@ -1,13 +1,9 @@
 package com.votek.pdfConverter.api;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
-
 import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
-import com.votek.pdfConverter.impl.transformation.PdfPageCountTransformation;
-import com.votek.pdfConverter.impl.transformation.PdfScaleTransformation;
+
+import java.io.File;
+import java.util.LinkedHashSet;
 
 public interface FileData {
 	File getInputFile();
@@ -16,39 +12,26 @@ public interface FileData {
 
 	Format getOutputFormat();
 
-	PriorityQueue<PdfTransformation> getTransformations();
-
 	/**
-	 * Create a copy of this instance and override the inputFile with the new value
-	 * 
-	 * @param newInputfile
-	 * @return
-	 */
-	FileData copy(File newInputfile);
-
-	/**
-	 * 
-	 * @param inputFile
-	 * @param scale
-	 * @param format
-	 * @return
-	 */
-	static FileData from(File inputFile, double scale, Format format) {
-		return new FileDataImpl(inputFile, scale, format, new PriorityQueue<>(
-				Arrays.asList(new PdfScaleTransformation(scale, format, 10), new PdfPageCountTransformation(20))));
-	}
-
-	/**
-	 * 
 	 * @param inputFile
 	 * @param scale
 	 * @param format
 	 * @param transformations
 	 * @return
 	 */
-	static FileData from(File inputFile, double scale, Format format, List<PdfTransformation> transformations) {
-		return new FileDataImpl(inputFile, scale, format, new PriorityQueue<>(transformations));
+	static FileData of(File inputFile, double scale, Format format, LinkedHashSet<PdfTransformation> transformations) {
+		return new FileDataImpl(inputFile, scale, format, transformations);
 	}
+
+	LinkedHashSet<PdfTransformation> getTransformations();
+
+	/**
+	 * Create a copy of this instance and override the inputFile with the new value
+	 *
+	 * @param newInputfile
+	 * @return
+	 */
+	FileData copyWith(File newInputfile);
 
 	enum Format {
 		A0("A0"), A1("A1"), A2("A2"), A3("A3"), A4("A4"), A5("A5"), A6("A6");

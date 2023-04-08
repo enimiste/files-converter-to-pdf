@@ -1,11 +1,5 @@
 package com.votek.pdfConverter.impl.transformation;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.itextpdf.awt.geom.AffineTransform;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
@@ -15,10 +9,16 @@ import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.votek.pdfConverter.api.Configuration;
-import com.votek.pdfConverter.api.FileResponse;
 import com.votek.pdfConverter.api.FileData.Format;
+import com.votek.pdfConverter.api.FileResponse;
 import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Scaling up or down is related to changing paper format So it needs to be
@@ -30,14 +30,12 @@ import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 public class PdfScaleTransformation implements PdfTransformation {
 	protected Format format;
 	protected double scale;
-	protected int priority;
 	protected static Map<Format, Rectangle> pageSizes = new HashMap<>();
 
-	public PdfScaleTransformation(double scale, Format format, int priority) {
+	public PdfScaleTransformation(double scale, Format format) {
 		super();
 		this.scale = Math.max(1, Math.abs(scale));
 		this.format = format;
-		this.priority = priority;
 
 		pageSizes.put(Format.A0, PageSize.A0);
 		pageSizes.put(Format.A1, PageSize.A1);
@@ -46,11 +44,6 @@ public class PdfScaleTransformation implements PdfTransformation {
 		pageSizes.put(Format.A4, PageSize.A4);
 		pageSizes.put(Format.A5, PageSize.A5);
 		pageSizes.put(Format.A6, PageSize.A6);
-	}
-
-	@Override
-	public int getPriority() {
-		return priority;
 	}
 
 	@Override
@@ -103,7 +96,7 @@ public class PdfScaleTransformation implements PdfTransformation {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param doc
 	 * @param page
 	 * @param scale
@@ -121,7 +114,7 @@ public class PdfScaleTransformation implements PdfTransformation {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param format
 	 * @return
 	 */

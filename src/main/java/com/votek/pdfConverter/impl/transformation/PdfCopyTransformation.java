@@ -1,27 +1,20 @@
 package com.votek.pdfConverter.impl.transformation;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileResponse;
 import com.votek.pdfConverter.api.PdfTransformer.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 public class PdfCopyTransformation implements PdfTransformation {
-	protected int priority;
 	protected File dest;
 
-	public PdfCopyTransformation(File destination, int priority) {
+	public PdfCopyTransformation(File destination) {
 		super();
-		this.priority = priority;
 		this.dest = destination;
-	}
-
-	@Override
-	public int getPriority() {
-		return priority;
 	}
 
 	@Override
