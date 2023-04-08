@@ -31,14 +31,14 @@ public abstract class AbstractPdfConverterEngine implements PdfConverterEngine {
         }
 
         //Converters
-        List<FileResponse> pdfs = new ArrayList<>();
+        List<FileResponse> convertedFiles = new ArrayList<>();
         List<FileResponse> items;
         boolean handled = false;
         for (FileToPdfConverter converter : getConverters()) {
             if (converter.canHandle(file)) {
                 items = converter.handle(file, conf);
                 if (items != null)
-                    pdfs.addAll(items);
+                    convertedFiles.addAll(items);
                 handled = true;
                 break;
             }
@@ -47,7 +47,8 @@ public abstract class AbstractPdfConverterEngine implements PdfConverterEngine {
             throw new NoConverterFoundException(file.getInputFile());
 
         //Transformers
-        for (FileResponse pdf : pdfs) {
+        List<FileResponse> transformedFiles = new ArrayList<>();
+        for (FileResponse pdf : convertedFiles) {
             FileResponse res = getTransformer().applyTransformations(file.getTransformations(), pdf, conf);
             try {
                 File outFile = new File(conf.getOutDir(), res.getOutputFile().getName());
@@ -57,12 +58,12 @@ public abstract class AbstractPdfConverterEngine implements PdfConverterEngine {
                 // Delete the old file
                 if (res.getOutputFile().exists())
                     res.getOutputFile().delete();
-                pdfs.add(FileResponse.from(outFile, res.getPagesNumber()));
+                transformedFiles.add(FileResponse.from(outFile, res.getPagesNumber()));
             } catch (IOException | InvalidFileResponseException e) {
                 throw new FileConverterException(res.getOutputFile(), e);
             }
         }
 
-        return pdfs;
+        return transformedFiles;
     }
 }
