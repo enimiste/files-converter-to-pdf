@@ -49,7 +49,7 @@ public abstract class AbstractPdfConverterEngine implements PdfConverterEngine {
         //Transformers
         List<FileResponse> transformedFiles = new ArrayList<>();
         for (FileResponse pdf : convertedFiles) {
-            FileResponse res = getTransformer().applyTransformations(file.getTransformations(), pdf, conf);
+            FileResponse res = file.getTransformation().apply(pdf, conf);
             try {
                 File outFile = new File(conf.getOutDir(), res.getOutputFile().getName());
                 if (outFile.exists())

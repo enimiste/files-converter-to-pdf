@@ -1,6 +1,5 @@
 package com.votek.pdfConverter.api;
 
-import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
 
 import java.io.File;
 import java.util.LinkedHashSet;
@@ -23,7 +22,7 @@ public interface FileData {
 		return new FileDataImpl(inputFile, scale, format, transformations);
 	}
 
-	LinkedHashSet<PdfTransformation> getTransformations();
+	PdfTransformation getTransformation();
 
 	/**
 	 * Create a copy of this instance and override the inputFile with the new value

@@ -11,12 +11,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.votek.pdfConverter.api.Configuration;
 import com.votek.pdfConverter.api.FileData.Format;
 import com.votek.pdfConverter.api.FileResponse;
-import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
+import com.votek.pdfConverter.api.PdfTransformation;
 import com.votek.pdfConverter.api.exception.FilePdfTransformationException;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,11 +53,11 @@ public class PdfScaleTransformation implements PdfTransformation {
 	@Override
 	public FileResponse apply(FileResponse file, Configuration conf) throws FilePdfTransformationException {
 		PdfReader in = null;
-		OutputStream out = null;
+		OutputStream out;
 		Document doc = null;
-		PdfWriter writer = null;
-		PdfImportedPage page = null;
-		PdfContentByte canvas = null;
+		PdfWriter writer;
+		PdfImportedPage page;
+		PdfContentByte canvas;
 		try {
 			in = new PdfReader(file.getOutputFile().toURI().toURL());
 
@@ -68,10 +68,10 @@ public class PdfScaleTransformation implements PdfTransformation {
 				outSize = new Rectangle(outSize.getHeight(), outSize.getWidth(), inSize.getRotation());
 			}
 
-			doc = new Document(inSize);
+			doc = new Document(outSize);
 			File outFile = new File(conf.getTempDir(), file.getOutputFile().getName().toLowerCase().replace(".pdf",
 					String.format("-%.2f-%s.pdf", scale, format)));
-			out = new FileOutputStream(outFile);
+			out = Files.newOutputStream(outFile.toPath());
 			writer = PdfWriter.getInstance(doc, out);
 			writer.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
 			doc.open();

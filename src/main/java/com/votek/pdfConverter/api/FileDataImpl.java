@@ -1,7 +1,5 @@
 package com.votek.pdfConverter.api;
 
-import com.votek.pdfConverter.api.PdfTransformationManager.PdfTransformation;
-
 import java.io.File;
 import java.util.LinkedHashSet;
 
@@ -10,7 +8,7 @@ class FileDataImpl implements FileData {
 	protected File inputFile;
 	protected double outputScale;
 	protected Format outputFormat;
-	protected LinkedHashSet<PdfTransformation> transformations;
+	protected PdfTransformation transformation;
 
 	protected FileDataImpl(File inputFile, double outputScale, Format outputFormat,
 						   LinkedHashSet<PdfTransformation> transformations) {
@@ -18,7 +16,7 @@ class FileDataImpl implements FileData {
 		this.inputFile = inputFile;
 		this.outputScale = outputScale;
 		this.outputFormat = outputFormat;
-		this.transformations = transformations == null ? new LinkedHashSet<>() : transformations;
+		this.transformation = transformations == null ? PdfTransformation.NO_OP : new PdfTransformation.Chain(transformations);
 	}
 
 	@Override
@@ -42,8 +40,8 @@ class FileDataImpl implements FileData {
 	}
 
 	@Override
-	public LinkedHashSet<PdfTransformation> getTransformations() {
-		return transformations;
+	public PdfTransformation getTransformation() {
+		return transformation;
 	}
 
 }

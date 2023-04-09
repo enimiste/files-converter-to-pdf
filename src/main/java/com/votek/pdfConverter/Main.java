@@ -25,7 +25,7 @@ public class Main {
         if (args.length < 3) {
             System.out.println("Usage :");
             System.out.println("java -jar program.jar  filePath  scale  format");
-            System.out.println("-scale : double value in %. Ex : 100 to indicate 100%");
+            System.out.println("-scale : double value in % (> 0). Ex : 100 for 100%, 200 for 200%");
             System.out.println("-format : one of these strings A0, A1, A2, A3, A4, A5, A6");
             System.out.println("Thanks !");
             return;
@@ -56,11 +56,10 @@ public class Main {
                                     new PdfScaleTransformation(scale, format),
                                     new PdfPageCountTransformation())
                     ));
-            // FileData fileData = FileData.from(new File(path), scale, format);
             List<FileResponse> files = engine.convert(fileData, conf);
 
-            System.out.println("End");
             files.forEach(System.out::println);
+            System.out.println("End");
         } catch (Exception e) {
             e.printStackTrace();
         }

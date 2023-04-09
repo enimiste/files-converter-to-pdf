@@ -23,10 +23,6 @@ public interface PdfConverterEngine {
 		return new PdfConverterEngineImpl();
 	}
 
-	default PdfTransformationManager getTransformer() {
-		return PdfTransformationManager.newInstance();
-	}
-
 	/**
 	 * Order of execution :
 	 * <ol>
