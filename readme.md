@@ -41,9 +41,9 @@ static void run(String path, double scale, Format format) {
 
 			PdfConverterEngine engine = PdfConverterEngine.engine();
 			// Ex : engine.addFileConverter(converter);
-			Configuration conf = Configuration.from(new File("./tmp"), new File("./out"), new ArrayList<>());
+			Configuration conf = Configuration.of(new File("./tmp"), new File("./out"), new ArrayList<>());
 			// Ex : conf.addFileProcessor(processor);
-			FileData fileData = FileData.from(new File(path), scale, format);
+			FileData fileData = FileData.of(new File(path), scale, format);
 			
 			List<FileResponse> files = engine.convert(fileData, conf);
 
